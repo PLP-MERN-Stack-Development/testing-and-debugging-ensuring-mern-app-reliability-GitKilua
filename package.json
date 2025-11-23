@@ -1,0 +1,27 @@
+{
+  "name": "mern-bug-tracker",
+  "version": "1.0.0",
+  "description": "1. Clone and run `npm run install-all` (installs deps for root, client, server). 2. Set up MongoDB and add to `server/.env` (e.g., MONGO_URI=mongodb://localhost:27017/bugtracker).",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLP-MERN-Stack-Development/testing-and-debugging-ensuring-mern-app-reliability-GitKilua.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PLP-MERN-Stack-Development/testing-and-debugging-ensuring-mern-app-reliability-GitKilua/issues"
+  },
+  "homepage": "https://github.com/PLP-MERN-Stack-Development/testing-and-debugging-ensuring-mern-app-reliability-GitKilua#readme",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^9.0.0",
+    "tailwindcss": "^4.1.17"
+  }
+}
