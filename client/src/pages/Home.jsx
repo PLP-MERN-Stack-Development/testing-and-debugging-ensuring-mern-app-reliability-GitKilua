@@ -1,6 +1,7 @@
 import BugList from '../components/BugList';
 import { Link } from 'react-router-dom';
-import { Button } from '../components/ui/button'; // shadcn
+import Button from "../components/Button";
+
 
 const Home = () => (
   <div>

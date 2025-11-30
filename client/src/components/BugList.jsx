@@ -1,43 +1,29 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchBugs, updateBug, deleteBug } from '../store/bugsSlice';
-import { Card } from './ui/card'; // shadcn
-import { Select } from './ui/select'; // shadcn
-import { Button } from './ui/button'; // shadcn
+import React from 'react';
+import { useSelector } from 'react-redux'; // Use useSelector to access state
+import { Link } from 'react-router-dom';
 
 const BugList = () => {
-  const bugs = useSelector((state) => state.bugs.list);
-  const dispatch = useDispatch();
+  // Correctly select the bugs array from the state
+  const bugs = useSelector(state => state.bugs.list); 
 
-  useEffect(() => {
-    dispatch(fetchBugs());
-  }, [dispatch]);
-
-  const handleUpdate = (id, status) => {
-    dispatch(updateBug({ id, status }));
-  };
-
-  const handleDelete = (id) => {
-    dispatch(deleteBug(id));
-  };
+  if (bugs.length === 0) {
+    return <p className="text-gray-500">No bugs reported yet!</p>;
+  }
 
   return (
     <div className="space-y-4">
-      {bugs.map((bug) => (
-        <Card key={bug._id} className="p-4">
-          <h3 className="font-bold">{bug.title}</h3>
-          <p>{bug.description}</p>
-          <Select
-            value={bug.status}
-            onValueChange={(value) => handleUpdate(bug._id, value)}
-            className="mt-2"
+      <h2 className="text-xl font-bold">Reported Bugs ({bugs.length})</h2>
+      {/* Map over the bugs array to display each one */}
+      {bugs.map(bug => (
+        <Link key={bug._id} to={`/bug/${bug._id}`} className="block">
+          <div 
+            className={`p-4 rounded shadow cursor-pointer hover:shadow-lg transition ${bug.status === 'resolved' ? 'bg-green-100' : bug.status === 'in-progress' ? 'bg-yellow-100' : 'bg-red-100'}`}
           >
-            <option value="open">Open</option>
-            <option value="in-progress">In Progress</option>
-            <option value="resolved">Resolved</option>
-          </Select>
-          <Button onClick={() => handleDelete(bug._id)} className="mt-2 bg-red-500 text-white">Delete</Button>
-        </Card>
+            <h3 className="font-semibold">{bug.title}</h3>
+            <p className="text-sm text-gray-700">{bug.description}</p>
+            <p className="text-xs text-gray-500 mt-2">Status: {bug.status}</p>
+          </div>
+        </Link>
       ))}
     </div>
   );
